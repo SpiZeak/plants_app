@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "yarn build && serve -s dist"
+    "serve": "yarn build && serve -s dist -l 80"
   },
   "dependencies": {
     "serve": "^11.3.2",
