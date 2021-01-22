@@ -1,8 +1,19 @@
-import vue from '@vitejs/plugin-vue'
+import vue from '@vitejs/plugin-vue';
+import { VitePWA } from 'vite-plugin-pwa';
 
 /**
  * @type {import('vite').UserConfig}
  */
 export default {
-  plugins: [vue()]
-}
+  plugins: [
+    vue(),
+    VitePWA({
+      manifest: {
+        // content of manifest
+      },
+      workbox: {
+        // workbox options for generateSW
+      }
+    })
+  ],
+};
