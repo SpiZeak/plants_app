@@ -1,6 +1,9 @@
 {
   "name": "plants",
   "version": "0.0.0",
+  "engines": {
+    "node": "15.x"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
