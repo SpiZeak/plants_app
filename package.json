@@ -5,9 +5,9 @@
     "node": "15.x"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "npm run build && serve -s dist"
+    "dev": "npx vite",
+    "build": "npx vite build",
+    "serve": "npm run build && npx serve -s dist"
   },
   "dependencies": {
     "serve": "^11.3.2",
