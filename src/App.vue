@@ -1,41 +1,20 @@
 <template>
-	<h3>Plant water meter:</h3>
-	<figure>
-		<div
-			class="gauge percentage"
-			:class="classes"
-			@mouseover="mouseOver"
-			@mouseleave="mouseLeave"
-		>
-			<div class="meter" :style="meterStyles"></div>
-			<div class="percentage-container">
-				<div class="percentage-indicator">
-					0%<br />
-					5%<br />
-					10%<br />
-					15%<br />
-					20%<br />
-					25%<br />
-					30%<br />
-					35%<br />
-					40%<br />
-					45%<br />
-					50%<br />
-					55%<br />
-					60%<br />
-					65%<br />
-					70%<br />
-					75%<br />
-					80%<br />
-					85%<br />
-					90%<br />
-					95%<br />
-					100%
+	<h3>Lillemans vattennivå:</h3>
+	<div class="plant-container">
+		<div class="plant">
+			<div class="plant__leaves"></div>
+		</div>
+		<figure>
+			<div class="gauge percentage" :class="classes">
+				<div class="meter" :style="meterStyles"></div>
+				<div class="percentage-container">
+					<div class="percentage-indicator">
+						{{ calculatePercentage() + '%' }}
+					</div>
 				</div>
 			</div>
-		</div>
-	</figure>
-	<h2>{{ this.percentage }}</h2>
+		</figure>
+	</div>
 </template>
 
 <script>
@@ -58,23 +37,45 @@ export default {
 			meterStyles: {}
 		}
 	},
-	beforeUpdate() {
-		this.meterStyles.transform = `rotate(${this.percentage / 2}turn)`
-		this.calculatePercentage()
-	},
 	methods: {
 		calculatePercentage: function () {
-			const threshold = this.plants.plant_1.min - this.plants.plant_1.max
-			this.percentage = this.plants.plant_1.sensor / threshold
+			let percentage = map(
+				this.plants.plant_1.sensor,
+				this.plants.plant_1.min,
+				this.plants.plant_1.max,
+				0,
+				100
+			)
+
+			percentage = percentage.toFixed(0)
+
+			if (percentage >= 100) {
+				percentage = 100
+			} else if (percentage <= 0) {
+				percentage = 0
+			}
+
+			this.meterStyles.transform = `rotate(${percentage / 200}turn)`
+			this.percentage = percentage
+
+			return percentage
 		}
 	},
 	firebase: {
 		plants: db.ref('plants')
 	}
 }
+
+function map(x, in_min, in_max, out_min, out_max) {
+	return ((x - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+}
 </script>
 
 <style lang="scss">
+html {
+	font-size: 150%;
+}
+
 body {
 	font-family: Avenir, Helvetica, Arial, sans-serif;
 	text-align: center;
@@ -84,9 +85,15 @@ body {
 	justify-content: center;
 }
 
-/* Using rems to easily scale these gauges */
-html {
-	font-size: 150%;
+#app {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.plant-container {
+	display: flex;
+	align-items: flex-end;
 }
 
 h3 {
@@ -137,10 +144,6 @@ h3 {
 	background: deepskyblue;
 }
 
-// .gauge:hover .meter {
-// 	transform: rotate(0.5turn);
-// }
-
 /* Overload effect ==================== */
 .overload {
 	transform-origin: center center;
@@ -163,17 +166,11 @@ h3 {
 
 .percentage-indicator {
 	font: bold 1.25rem/1.6 sans-serif;
-	color: #333;
+	color: blue;
 	line-height: 2.5rem;
 	white-space: pre;
-	transition: 1.5s;
 	vertical-align: baseline;
 	user-select: none;
-}
-
-.gauge:hover .percentage-indicator {
-	transform: translateY(-50rem);
-	color: blue;
 }
 
 .overload .meter {
@@ -202,6 +199,7 @@ body {
 
 figure {
 	flex: 1;
+	margin: 0 0 0 2rem;
 }
 
 @keyframes overload {
@@ -213,6 +211,91 @@ figure {
 	}
 	75% {
 		transform: translateX(1px);
+	}
+}
+
+$green: #67b57d;
+$green-light: #6fc688;
+$green-lighter: #7cd392;
+
+.plant {
+	width: 5rem;
+	height: 4rem;
+	position: relative;
+	margin-top: 4rem;
+
+	&::after,
+	&::before {
+		content: '';
+		position: absolute;
+	}
+
+	&::after {
+		width: 100%;
+		height: 100%;
+		border-radius: 0.5rem 0.5rem 0.2rem 0.2rem;
+		bottom: 0;
+		left: 0;
+		background-color: #4c8de8;
+	}
+
+	&__leaves {
+		width: 40%;
+		padding-top: 100%;
+		border-radius: 100%;
+		background-color: $green;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		bottom: 2rem;
+
+		&::after,
+		&::before {
+			width: 100%;
+			height: 100%;
+			border-radius: 100%;
+			content: '';
+			position: absolute;
+			top: 0;
+		}
+
+		&::before {
+			background-color: $green-light;
+			left: -40%;
+			transform: rotate(-40deg);
+			animation: plant-left 3s ease infinite;
+		}
+
+		&::after {
+			background-color: $green-lighter;
+			left: 40%;
+			transform: rotate(40deg);
+			animation: plant-right 3s ease infinite;
+		}
+	}
+}
+
+@keyframes plant-right {
+	0% {
+		transform: rotate(40deg);
+	}
+	50% {
+		transform: rotate(50deg);
+	}
+	100% {
+		transform: rotate(40deg);
+	}
+}
+
+@keyframes plant-left {
+	0% {
+		transform: rotate(-40deg);
+	}
+	50% {
+		transform: rotate(-50deg);
+	}
+	100% {
+		transform: rotate(-40deg);
 	}
 }
 </style>
