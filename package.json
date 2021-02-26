@@ -9,8 +9,10 @@
     "build": "vite build"
   },
   "dependencies": {
+    "firebase": "^8.2.9-2021119233939",
     "serve-static": "^1.14.1",
-    "vue": "^3.0.5"
+    "vue": "^3.0.5",
+    "vuefire": "^3.0.0-alpha.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.0.4",

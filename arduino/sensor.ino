@@ -13,11 +13,11 @@ const char *ssid = "Interwebs 2.4GHz"; //--> Your wifi name or SSID.
 const char *password = "bananpaj";	   //--> Your wifi password.
 //----------------------------------------
 
-long randNumber;
+const int sense_Pin = 0;
+int value = 0;
 
 void setup()
 {
-	// put your setup code here, to run once:
 	Serial.begin(115200);
 	delay(500);
 
@@ -58,12 +58,10 @@ void setup()
 void loop()
 {
 	//----------------------------------------Send data in the form of random value data to the Firebase Realtime Database.
-	randNumber = random(1, 100);
-	String dataSend = String(randNumber);
-	Serial.print("Random Number : ");
-	Serial.println(dataSend);
+	value = analogRead(sense_Pin);
+	Serial.println(value);
 
-	Firebase.setString("RandomValue", dataSend); //--> Command or code to send data or update data (String data type) to the Firebase Realtime Database.
+	Firebase.setString("plants/plant_1/sensor", String(value)); //--> Command or code to send data or update data (String data type) to the Firebase Realtime Database.
 
 	// Conditions for handling errors.
 	if (Firebase.failed())

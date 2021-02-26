@@ -1,14 +1,13 @@
 <template>
+	<h3>Plant water meter:</h3>
 	<figure>
-		<div class="gauge overload">
-			<div class="meter"></div>
-		</div>
-		<figcaption>Overload</figcaption>
-	</figure>
-
-	<figure>
-		<div class="gauge percentage">
-			<div class="meter"></div>
+		<div
+			class="gauge percentage"
+			:class="classes"
+			@mouseover="mouseOver"
+			@mouseleave="mouseLeave"
+		>
+			<div class="meter" :style="meterStyles"></div>
 			<div class="percentage-container">
 				<div class="percentage-indicator">
 					0%<br />
@@ -35,9 +34,45 @@
 				</div>
 			</div>
 		</div>
-		<figcaption>w/ Percentage</figcaption>
 	</figure>
+	<h2>{{ this.percentage }}</h2>
 </template>
+
+<script>
+import { db } from './db'
+
+export default {
+	data() {
+		return {
+			percentage: 0,
+			classes: {
+				overload: false
+			},
+			plants: {
+				plant_1: {
+					sensor: 0,
+					min: 0,
+					max: 0
+				}
+			},
+			meterStyles: {}
+		}
+	},
+	beforeUpdate() {
+		this.meterStyles.transform = `rotate(${this.percentage / 2}turn)`
+		this.calculatePercentage()
+	},
+	methods: {
+		calculatePercentage: function () {
+			const threshold = this.plants.plant_1.min - this.plants.plant_1.max
+			this.percentage = this.plants.plant_1.sensor / threshold
+		}
+	},
+	firebase: {
+		plants: db.ref('plants')
+	}
+}
+</script>
 
 <style lang="scss">
 body {
@@ -45,11 +80,17 @@ body {
 	text-align: center;
 	color: #2c3e50;
 	margin-top: 60px;
+	display: flex;
+	justify-content: center;
 }
 
 /* Using rems to easily scale these gauges */
 html {
 	font-size: 150%;
+}
+
+h3 {
+	color: #fff;
 }
 
 .gauge {
@@ -58,7 +99,6 @@ html {
 	width: 10rem;
 	height: 5rem;
 	overflow: hidden;
-	margin: 2rem;
 }
 
 .gauge:before,
@@ -97,38 +137,19 @@ html {
 	background: deepskyblue;
 }
 
-.gauge:hover .meter {
-	transform: rotate(0.5turn);
-}
+// .gauge:hover .meter {
+// 	transform: rotate(0.5turn);
+// }
 
 /* Overload effect ==================== */
 .overload {
 	transform-origin: center center;
-}
-.overload:hover {
 	animation: overload 0.15s 0.5s infinite;
-}
-.overload .meter {
-	background: gold;
-}
-.overload:hover .meter {
-	background: orangered;
-}
-@keyframes overload {
-	25% {
-		transform: translateX(2px);
-	}
-	50% {
-		transform: rotate(-1deg);
-	}
-	75% {
-		transform: translateX(1px);
-	}
 }
 
 /* Gauge with percentage indicator ============== */
 .percentage .meter {
-	background: limegreen;
+	background: blue;
 }
 .percentage-container {
 	position: absolute;
@@ -152,19 +173,9 @@ html {
 
 .gauge:hover .percentage-indicator {
 	transform: translateY(-50rem);
-	color: limegreen;
+	color: blue;
 }
 
-/* Demo code ==================== */
-
-.meter {
-	animation: empty 1.5s linear both;
-}
-@keyframes empty {
-	0% {
-		transform: rotate(180deg);
-	}
-}
 .overload .meter {
 	animation-delay: 0.4s;
 }
@@ -192,10 +203,16 @@ body {
 figure {
 	flex: 1;
 }
-figcaption {
-	display: block;
-	font: 10pt monospace;
-	color: #444;
-	user-select: none;
+
+@keyframes overload {
+	25% {
+		transform: translateX(2px);
+	}
+	50% {
+		transform: rotate(-1deg);
+	}
+	75% {
+		transform: translateX(1px);
+	}
 }
 </style>
