@@ -49,8 +49,11 @@ export default {
 
 			percentage = percentage.toFixed(0)
 
+			this.classes.overload = false
+
 			if (percentage >= 100) {
 				percentage = 100
+				this.classes.overload = true
 			} else if (percentage <= 0) {
 				percentage = 0
 			}
