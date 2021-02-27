@@ -1,5 +1,5 @@
 <template>
-	<h3>Lillemans vattennivå:</h3>
+	<h1>Lillemans vattennivå</h1>
 	<div class="plant-container">
 		<div class="plant">
 			<div class="plant__leaves"></div>
@@ -15,6 +15,7 @@
 			</div>
 		</figure>
 	</div>
+	<h3 class="overloaded" v-if="classes.overload">Övervattnad</h3>
 </template>
 
 <script>
@@ -51,7 +52,7 @@ export default {
 
 			this.classes.overload = false
 
-			if (percentage >= 100) {
+			if (percentage > 100) {
 				percentage = 100
 				this.classes.overload = true
 			} else if (percentage <= 0) {
@@ -75,14 +76,24 @@ function map(x, in_min, in_max, out_min, out_max) {
 </script>
 
 <style lang="scss">
+@font-face {
+	font-family: 'Gamja';
+	src: url('./assets/fonts/GamjaFlower-Regular.ttf');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Open+Sans+Condensed:wght@300&display=swap');
+
+$blue: #36aeff;
+$darkblue: #1f7fff;
+
 html {
 	font-size: 150%;
 }
 
 body {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
+	font-family: 'Amatic SC', cursive;
 	text-align: center;
-	color: #2c3e50;
+	color: #fff;
 	margin-top: 60px;
 	display: flex;
 	justify-content: center;
@@ -94,13 +105,24 @@ body {
 	align-items: center;
 }
 
+h1 {
+	font-family: 'Amatic SC', cursive;
+	letter-spacing: 3px;
+	font-size: 64px;
+	text-transform: uppercase;
+}
+
+.overloaded {
+	font-family: 'Open Sans Condensed', sans-serif;
+	margin-top: 60px;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+}
+
 .plant-container {
 	display: flex;
 	align-items: flex-end;
-}
-
-h3 {
-	color: #fff;
 }
 
 .gauge {
@@ -155,7 +177,7 @@ h3 {
 
 /* Gauge with percentage indicator ============== */
 .percentage .meter {
-	background: blue;
+	background: $blue;
 }
 .percentage-container {
 	position: absolute;
@@ -168,8 +190,8 @@ h3 {
 }
 
 .percentage-indicator {
-	font: bold 1.25rem/1.6 sans-serif;
-	color: blue;
+	font: bold 1.5rem/1.6 'Gamja';
+	color: $blue;
 	line-height: 2.5rem;
 	white-space: pre;
 	vertical-align: baseline;
@@ -178,7 +200,13 @@ h3 {
 
 .overload .meter {
 	animation-delay: 0.4s;
+	background: $darkblue;
 }
+
+.overload .percentage-indicator {
+	color: $darkblue;
+}
+
 .percentage .meter {
 	animation-delay: 0.8s;
 }
@@ -222,10 +250,15 @@ $green-light: #6fc688;
 $green-lighter: #7cd392;
 
 .plant {
-	width: 5rem;
-	height: 4rem;
+	width: 2.5rem;
+	height: 2rem;
 	position: relative;
 	margin-top: 4rem;
+
+	@media (min-width: 482px) {
+		width: 5rem;
+		height: 4rem;
+	}
 
 	&::after,
 	&::before {
@@ -239,7 +272,7 @@ $green-lighter: #7cd392;
 		border-radius: 0.5rem 0.5rem 0.2rem 0.2rem;
 		bottom: 0;
 		left: 0;
-		background-color: #4c8de8;
+		background-color: #e2725b;
 	}
 
 	&__leaves {
@@ -250,7 +283,11 @@ $green-lighter: #7cd392;
 		position: absolute;
 		left: 50%;
 		transform: translateX(-50%);
-		bottom: 2rem;
+		bottom: 1rem;
+
+		@media (min-width: 482px) {
+			bottom: 2rem;
+		}
 
 		&::after,
 		&::before {
