@@ -229,8 +229,9 @@ body {
 }
 
 figure {
+	display: flex;
 	flex: 1;
-	margin: 0 0 0 2rem;
+	margin: 0 0 0 2.4rem;
 }
 
 @keyframes overload {
