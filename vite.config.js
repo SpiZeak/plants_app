@@ -16,4 +16,14 @@ export default {
       }
     })
   ],
+  optimizeDeps: {
+    include: [
+      'firebase/app',
+      'firebase/analytics',
+      'firebase/database',
+      'firebase/performance',
+      'firebase/auth',
+      'firebase/messaging'
+    ]
+  }
 };
