@@ -7,11 +7,11 @@ import 'firebase/messaging';
 
 // Config
 const firebaseConfig = {
-	apiKey: import.meta.env.VITE_API_KEY,
-	appId: import.meta.env.VITE_APP_ID,
-	databaseURL: import.meta.env.VITE_DB_URL,
-	projectId: import.meta.env.VITE_PROJECT_ID,
-	messagingSenderId: import.meta.env.VITE_MESSAGING_ID,
+	apiKey: 'AIzaSyD2NN88cDqWjS9KlOnqqnpciJGZouNLzus',
+	appId: '1:976846012631:web:f3518ee84312535dcf7092',
+	databaseURL: 'https://plants-fd8dd-default-rtdb.europe-west1.firebasedatabase.app/',
+	projectId: 'plants-fd8dd',
+	messagingSenderId: '976846012631',
 };
 
 // Initialize app
