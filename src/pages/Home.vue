@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { db } from './firebase'
+import { db } from '../firebase'
 
 export default {
 	data() {
@@ -78,7 +78,7 @@ function map(x, in_min, in_max, out_min, out_max) {
 <style lang="scss">
 @font-face {
 	font-family: 'Gamja';
-	src: url('./assets/fonts/GamjaFlower-Regular.ttf');
+	src: url('../assets/fonts/GamjaFlower-Regular.ttf');
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Open+Sans+Condensed:wght@300&display=swap');

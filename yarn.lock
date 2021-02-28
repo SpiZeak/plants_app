@@ -2763,6 +2763,11 @@ vue-demi@^0.4.5:
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.4.5.tgz#ea422a4468cb6321a746826a368a770607f87791"
   integrity sha512-51xf1B6hV2PfjnzYHO/yUForFCRQ49KS8ngQb5T6l1HDEmfghTFtsxtRa5tbx4eqQsH76ll/0gIxuf1gei0ubw==
 
+vue-pwa-install@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/vue-pwa-install/-/vue-pwa-install-1.1.0.tgz#f642a622e4c97fb2d22f3bf3458eade7478c302e"
+  integrity sha512-0zNt7DGSBvLyVntTAsbshvGDAaa27pKCB4P5Fs0UkaLCmZTt11T6clxcPFSOL3VWduSPl44abuig+zWWL/b1Cw==
+
 vue@^3.0.5:
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.0.5.tgz#de1b82eba24abfe71e0970fc9b8d4b2babdc3fe1"
