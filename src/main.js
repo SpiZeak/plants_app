@@ -1,28 +1,9 @@
-import { createApp, h } from 'vue';
+import { createApp } from 'vue';
 import { rtdbPlugin } from 'vuefire';
-import HomeComponent from './pages/Home.vue';
-import SignupComponent from './pages/Signup.vue';
-import NotFoundComponent from './pages/404.vue';
+import { router } from './router';
 
-const routes = {
-	'/': HomeComponent,
-	'/ny-anvandare': SignupComponent
-};
+const app = createApp(router).use(rtdbPlugin).mount('#app');
 
-const router = {
-	data: () => ({
-		currentRoute: window.location.pathname
-	}),
-
-	computed: {
-		CurrentComponent() {
-			return routes[this.currentRoute] || NotFoundComponent;
-		}
-	},
-
-	render() {
-		return h(this.CurrentComponent);
-	}
-};
-
-createApp(router).use(rtdbPlugin).mount('#app');
+window.addEventListener('popstate', () => {
+	app.currentRoute = window.location.pathname;
+});

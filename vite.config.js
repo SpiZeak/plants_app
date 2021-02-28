@@ -9,7 +9,7 @@ export default {
     vue(),
     VitePWA({
       manifest: {
-        "theme_color": "#4f8d05",
+        "theme_color": "#7cd392",
         "background_color": "#222",
         "display": "standalone",
         "scope": "/",
@@ -54,5 +54,5 @@ export default {
       'firebase/auth',
       'firebase/messaging'
     ]
-  }
+  },
 };

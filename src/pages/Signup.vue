@@ -1,9 +1,19 @@
 <template>
-	<h1>Signup page</h1>
+	<main-layout>
+		<Form />
+	</main-layout>
 </template>
 
 <script>
-export default {}
+import MainLayout from '../layouts/Main.vue'
+import Form from '../components/Form.vue'
+
+export default {
+	components: {
+		MainLayout,
+		Form
+	}
+}
 </script>
 
 <style>

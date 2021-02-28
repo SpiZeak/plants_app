@@ -1,9 +1,17 @@
 <template>
-	<h1>Sidan hittades inte</h1>
+	<main-layout>
+		<h1>Sidan hittades inte</h1>
+	</main-layout>
 </template>
 
 <script>
-export default {}
+import MainLayout from '../layouts/Main.vue'
+
+export default {
+	components: {
+		MainLayout
+	}
+}
 </script>
 
 <style>
