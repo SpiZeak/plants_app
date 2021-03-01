@@ -35,7 +35,68 @@ export default {
 	font-style: normal;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Open+Sans+Condensed:wght@300&display=swap');
+@font-face {
+	font-family: 'Amatic SC';
+	src: url('../assets/fonts/AmaticSC-Bold.eot');
+	src: url('../assets/fonts/AmaticSC-Bold.eot?#iefix')
+			format('embedded-opentype'),
+		url('../assets/fonts/AmaticSC-Bold.svg#AmaticSC-Bold') format('svg'),
+		url('../assets/fonts/AmaticSC-Bold.woff') format('woff'),
+		url('../assets/fonts/AmaticSC-Bold.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Amatic SC';
+	src: url('../assets/fonts/AmaticSC-Regular.eot');
+	src: url('../assets/fonts/AmaticSC-Regular.eot?#iefix')
+			format('embedded-opentype'),
+		url('../assets/fonts/AmaticSC-Regular.svg#AmaticSC-Regular') format('svg'),
+		url('../assets/fonts/AmaticSC-Regular.woff') format('woff'),
+		url('../assets/fonts/AmaticSC-Regular.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Open Sans Condensed';
+	src: url('../assets/fonts/OpenSansCondensed-Bold.eot');
+	src: url('../assets/fonts/OpenSansCondensed-Bold.eot?#iefix')
+			format('embedded-opentype'),
+		url('../assets/fonts/OpenSansCondensed-Bold.svg#OpenSansCondensed-Bold')
+			format('svg'),
+		url('../assets/fonts/OpenSansCondensed-Bold.woff') format('woff'),
+		url('../assets/fonts/OpenSansCondensed-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Open Sans Condensed';
+	src: url('../assets/fonts/OpenSansCondensed-Light.eot');
+	src: url('../assets/fonts/OpenSansCondensed-Light.eot?#iefix')
+			format('embedded-opentype'),
+		url('../assets/fonts/OpenSansCondensed-Light.svg#OpenSansCondensed-Light')
+			format('svg'),
+		url('../assets/fonts/OpenSansCondensed-Light.woff') format('woff'),
+		url('../assets/fonts/OpenSansCondensed-Light.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Open Sans Condensed';
+	src: url('../assets/fonts/OpenSansCondensed-LightItalic.eot');
+	src: url('../assets/fonts/OpenSansCondensed-LightItalic.eot?#iefix')
+			format('embedded-opentype'),
+		url('../assets/fonts/OpenSansCondensed-LightItalic.svg#OpenSansCondensed-LightItalic')
+			format('svg'),
+		url('../assets/fonts/OpenSansCondensed-LightItalic.woff') format('woff'),
+		url('../assets/fonts/OpenSansCondensed-LightItalic.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
 
 $font-gamja: 'Gamja';
 $font-amatic: 'Amatic SC', cursive;
