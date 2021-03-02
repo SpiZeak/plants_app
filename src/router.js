@@ -1,12 +1,15 @@
 import { h } from 'vue';
-import HomeComponent from './pages/Home.vue';
-import SignupComponent from './pages/Signup.vue';
-import NotFoundComponent from './pages/404.vue';
+import Home from './pages/Home/Home.vue';
+import Signup from './pages/Signup/Signup.vue';
+import NotFound from './pages/404/404.vue';
+import Login from './pages/Login/Login.vue';
+
 
 export const routes = {
-	'/': HomeComponent,
-	'/ny-anvandare': SignupComponent,
-	'404': NotFoundComponent
+	'/': Home,
+	'/new-user': Signup,
+	'/login': Login,
+	'404': NotFound,
 };
 
 export const router = {

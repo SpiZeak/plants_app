@@ -1,0 +1,59 @@
+.form {
+  h1 {
+    text-align: center;
+  }
+
+  &__wrapper {
+    margin: auto;
+    max-width: 300px;
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    label {
+      font-size: 1rem;
+      margin-bottom: 2px;
+    }
+
+    input {
+      padding: 0.4rem 0.6rem;
+      font-size: 0.9rem;
+      border-radius: 3px;
+      border: none;
+    }
+  }
+
+  &__submit {
+    position: relative;
+    transition: all 0.15s;
+    margin-top: 48px;
+    display: block;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-radius: 3px;
+    padding: 12px 0;
+    font-size: 1rem;
+    border: 2px solid #7cd392;
+    color: #7cd392;
+
+    &:after {
+      content: '';
+      border-radius: 3px;
+      background-color: darken(#7cd392, 20%);
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: #7cd392;
+      color: #222;
+    }
+  }
+}
