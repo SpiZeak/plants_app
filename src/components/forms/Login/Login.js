@@ -1,4 +1,5 @@
 import { auth } from '../../../firebase';
+import { goto } from '../../../router';
 
 export default {
 	data() {
@@ -29,6 +30,7 @@ export default {
 					.then(userCredential => {
 						var user = userCredential.user;
 						console.log(user);
+						goto('/', this.$root);
 					})
 					.catch(error => {
 						this.errors.push(error.message);

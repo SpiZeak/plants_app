@@ -1,4 +1,4 @@
-import { routes } from '../../router';
+import { goto } from '../../router';
 
 export default {
 	props: {
@@ -15,8 +15,7 @@ export default {
 	methods: {
 		go(event) {
 			event.preventDefault();
-			this.$root.currentRoute = this.href;
-			window.history.pushState(null, routes[this.href], this.href);
+			goto(this.href, this.$root);
 		}
 	}
 };

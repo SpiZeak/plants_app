@@ -1,12 +1,17 @@
-import firebase from 'firebase/app';
+import { auth } from '../../firebase';
 import Navbar from '../../components/Navbar/Navbar.vue';
 
 export default {
+	data() {
+		return {
+			user: null
+		};
+	},
 	components: {
 		Navbar
 	},
 	mounted() {
-		firebase.auth().onAuthStateChanged(function (user) {
+		auth.onAuthStateChanged((user) => {
 			if (user) {
 				this.user = user;
 			} else {

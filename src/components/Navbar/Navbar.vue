@@ -1,16 +1,16 @@
 <template>
 	<ul>
 		<li>
-			<v-link href="/">Hem</v-link>
+			<v-link href="/">Home</v-link>
 		</li>
-		<li>
-			<v-link href="/new-user">Registrera dig</v-link>
+		<li v-if="!user">
+			<v-link href="/new-user">Register</v-link>
 		</li>
-		<li>
-			<v-link href="/login">Logga in</v-link>
+		<li v-if="!user">
+			<v-link href="/login">Login</v-link>
 		</li>
-		<li>
-			<v-link :click="logout" href="#">Logga ut</v-link>
+		<li v-if="user">
+			<v-link @click="logout" href="/logout">Log out</v-link>
 		</li>
 	</ul>
 

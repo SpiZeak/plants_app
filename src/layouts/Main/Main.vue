@@ -1,5 +1,5 @@
 <template>
-	<navbar />
+	<navbar :user="user" />
 	<slot />
 </template>
 
