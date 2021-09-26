@@ -7,7 +7,12 @@ export default {
 	data() {
 		return {
 			classes: {
-				overload: false
+				shake: false,
+				red: false,
+				blue: false,
+			},
+			message: {
+				first: '',
 			},
 			plants: {
 				plant_1: {

@@ -1,6 +1,8 @@
 #include <Firebase_ESP_Client.h>
 #include <WiFiManager.h>
 #include "credentials.h"
+#include "soc/soc.h"
+#include "soc/rtc_cntl_reg.h"
 
 //Define the Firebase Data object
 FirebaseData fbdo;
@@ -13,12 +15,15 @@ FirebaseConfig config;
 
 void tokenStatusCallback(TokenInfo info);
 
-const int sense_Pin = 36;
-int value = 0;
+const int sense_Pin = 35;
+int moisture_value = 0;
 
 void setup()
 {
+  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); // Disable brownout detector
+
   WiFiManager wifiManager;
+  wifiManager.setCountry("SE");
 
   esp_sleep_enable_timer_wakeup(3600000000);
 
@@ -42,6 +47,7 @@ void setup()
   config.max_token_generation_retry = 5;
 
   //Initialize the library with the Firebase authen and config.
+  Serial.println("Connecting to Firebase");
   Firebase.begin(&config, &auth);
 
   Serial.print("Waiting for token");
@@ -52,16 +58,16 @@ void setup()
     delay(300);
   }
 
-  value = analogRead(sense_Pin);
+  moisture_value = analogRead(sense_Pin);
 
-  if (Firebase.RTDB.setInt(&fbdo, "plants/plant_1/sensor", value))
+  if (Firebase.RTDB.setInt(&fbdo, "plants/plant_1/sensor", moisture_value))
   {
-    Serial.println("PASSED");
-    Serial.println(value);
+    Serial.println("Values successfully updated");
+    Serial.println(moisture_value);
   }
   else
   {
-    Serial.println("FAILED");
+    Serial.println("Values failed updating");
     Serial.println("REASON: " + fbdo.errorReason());
   }
 

@@ -46,7 +46,7 @@ $darkblue: #1f7fff;
 }
 
 /* Overload effect ==================== */
-.overload {
+.shake {
   transform-origin: center center;
   animation: overload 0.15s 0.5s infinite;
 }
@@ -55,6 +55,7 @@ $darkblue: #1f7fff;
 .percentage .meter {
   background: $blue;
 }
+
 .percentage-container {
   position: absolute;
   bottom: -0.75rem;
@@ -75,13 +76,26 @@ $darkblue: #1f7fff;
   text-align: center;
 }
 
-.overload .meter {
-  animation-delay: 0.4s;
-  background: $darkblue;
+.blue {
+  .meter {
+    animation-delay: 0.4s;
+    background: $darkblue;
+  }
+
+  .percentage-indicator {
+    color: $darkblue;
+  }
 }
 
-.overload .percentage-indicator {
-  color: $darkblue;
+.red {
+  .meter {
+    animation-delay: 0.4s;
+    background: #aa2732;
+  }
+
+  .percentage-indicator {
+    color: #aa2732;
+  }
 }
 
 .percentage .meter {
