@@ -1,11 +1,10 @@
 <template>
 	<figure>
+		<p>Water:</p>
 		<div class="gauge percentage" :class="classes">
 			<div class="meter" :style="meterStyles"></div>
 			<div class="percentage-container">
-				<div class="percentage-indicator">
-					{{ calculatePercentage() + '%' }}
-				</div>
+				<div class="percentage-indicator">{{ calculatePercentage() + '%' }}</div>
 			</div>
 		</div>
 	</figure>

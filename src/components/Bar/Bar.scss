@@ -1,0 +1,29 @@
+p {
+  margin: 20px 0 12px;
+}
+
+.container {
+  width: 400px;
+}
+
+.light-bar {
+  position: relative;
+  width: 100%;
+  margin-bottom: 50px;
+  background-color: rgba(255, 255, 0, 0.05);
+  height: 50px;
+}
+
+.meter {
+  background-color: rgb(238, 255, 0);
+  height: 100%;
+
+  svg {
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    width: 40px;
+    left: 5px;
+    color: rgb(109, 107, 0);
+  }
+}

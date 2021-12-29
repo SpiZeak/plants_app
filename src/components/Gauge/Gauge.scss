@@ -104,7 +104,13 @@ $darkblue: #1f7fff;
 
 figure {
   display: flex;
+  flex-direction: column;
   margin: 0 0 0 2.4rem;
+}
+
+p {
+  margin: 0 0 12px;
+  text-align: center;
 }
 
 @keyframes overload {
